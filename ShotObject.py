@@ -22,6 +22,9 @@ charList = " *  _  * ".split()
 charList1 = ['S', 'H', 'O', 'O', 'T']
 bullets = []
 
+effect = pygame.mixer.Sound("Flash-laser-10.wav")
+
+
 def getFont(name = "courier new", size = 30, style = ''):
     return pygame.font.SysFont(name, size, style)
 
@@ -39,6 +42,7 @@ class Bullet:
         self.movex = random.choice([-1, 1])
         self.movey = random.choice([-1, 1])
         self.speed = 20.0
+
 
     def target(self):
         cur = pygame.mouse.get_pos()
@@ -72,6 +76,7 @@ class mainPlayer:
         self.ammo = []
         self.coolDown = 0
         self.coolDownMax = 10
+
 
     def move(self, xdir, ydir):
         self.rect.x += xdir*self.speed
@@ -116,6 +121,7 @@ class mainPlayer:
 
 player = mainPlayer()
 
+
 spawnDelay = 0
 spawnDelayMax = 20
 #game loop
@@ -145,9 +151,9 @@ while not done:
 
     if mouse[0]:
         player.Shoot()
-        pygame.mixer.music.load("C:\Sound effects\Flash-laser-10.wav")
-        pygame.mixer.music.play(1, 0.0)
-
+        #pygame.mixer.sound.load("C:\Sound effects\Flash-laser-10.wav")
+        #pygame.mixer.Sound.play("C:\Sound effects\Flash-laser-10.wav")
+        effect.play(0,0,0)
 
     spawnDelay -= 1
     if spawnDelay <= 0:
