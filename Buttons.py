@@ -2,14 +2,17 @@ import pygame
 import time
 
 all_buttons = []
-error_time = 0
+error_start_time = 0
+error_length = 0
 
-
-def display_error_text(text):
-    global error_time
-    if text == '' and error_time <= time.clock()-10:
+def display_error_text(text="", seconds=10):
+    global error_start_time, error_length
+    if time.clock >= error_start_time + error_length:
         all_buttons[1].visible = False
+        error_length = 0
+        error_start_time == time.clock()
     else:
+        error_length = seconds
         all_buttons[1].visible = True
         all_buttons[1].text = text
 

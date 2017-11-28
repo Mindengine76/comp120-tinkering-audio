@@ -81,6 +81,7 @@ class Audio:
         self.save_wave_file()
         sound = pygame.mixer.Sound(self.name)
         sound.play()
+        Buttons.display_error_text("Playing Sound",5)
         if not self.save:
             os.os.remove(self.name)
 
